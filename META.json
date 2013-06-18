@@ -42,6 +42,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Path::Class" : "0",
             "perl" : "5.008005"
          }
       },
