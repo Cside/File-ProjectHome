@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Find home dir of a project",
    "author" : [
       "Hiroki Honda <cside.story@gmail.com>"
    ],
@@ -52,5 +52,16 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Cside/File-ProjectHome/issues"
+      },
+      "homepage" : "https://github.com/Cside/File-ProjectHome",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/Cside/File-ProjectHome.git",
+         "web" : "https://github.com/Cside/File-ProjectHome"
+      }
+   },
    "version" : "0.01"
 }

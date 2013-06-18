@@ -1,14 +1,27 @@
 # NAME
 
-File::ProjectHome - It's new $module
+File::ProjectHome - Find home dir of a project
 
 # SYNOPSIS
 
+    in /home/Cside/work/Some-Project/lib/Some/Module.pm
+
     use File::ProjectHome;
+    warn File::ProjectHome->project_home; #=> /home/Cside/work/Some-Project
 
 # DESCRIPTION
 
-File::ProjectHome is ...
+This module finds a project's home dir: nearest ancestral directory that contains any of these file or directories:
+
+    cpanfile
+    .git/
+    .gitmodules
+    Makefile.PL
+    Build.PL
+
+# SEE ALSAO
+
+[Project::Libs](http://search.cpan.org/perldoc?Project::Libs)
 
 # LICENSE
 
