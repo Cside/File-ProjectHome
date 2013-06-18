@@ -19,7 +19,6 @@ sub project_home {
     my $dir = dir((caller)[1]);
     while (my $parent = _parent($dir)) {
         for my $project_root_files (@PROJECT_ROOT_FILES) {
-            #warn File::Spec->catfile($dir, $project_root_files);
             if (-e File::Spec->catfile($dir, $project_root_files)) {
                 return "$dir";
             }
