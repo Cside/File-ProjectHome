@@ -2,10 +2,38 @@ package File::ProjectHome;
 use 5.008005;
 use strict;
 use warnings;
+use File::Spec;
+use Path::Class qw(dir);
 
 our $VERSION = "0.01";
 
+my @PROJECT_ROOT_FILES = qw(
+    cpanfile
+    .git
+    .gitmodules
+    Makefile.PL
+    Build.PL
+);
 
+sub project_home {
+    my $dir = dir((caller)[1]);
+    while (my $parent = _parent($dir)) {
+        for my $project_root_files (@PROJECT_ROOT_FILES) {
+            #warn File::Spec->catfile($dir, $project_root_files);
+            if (-e File::Spec->catfile($dir, $project_root_files)) {
+                return "$dir";
+            }
+        }
+        $dir = $parent;
+    }
+}
+
+sub _parent {
+    my $dir = shift;
+    my $parent = $dir->parent;
+    return if $parent eq '/';
+    return $parent;
+}
 
 1;
 __END__
@@ -14,15 +42,28 @@ __END__
 
 =head1 NAME
 
-File::ProjectHome - It's new $module
+File::ProjectHome - Find home dir of a project
 
 =head1 SYNOPSIS
 
+  in /home/Cside/work/Some-Project/lib/Some/Module.pm
+
     use File::ProjectHome;
+    warn File::ProjectHome->project_home; #=> /home/Cside/work/Some-Project
 
 =head1 DESCRIPTION
 
-File::ProjectHome is ...
+This module finds a project's home dir: nearest ancestral directory that contains any of these file or directories:
+
+  cpanfile
+  .git/
+  .gitmodules
+  Makefile.PL
+  Build.PL
+
+=head1 SEE ALSAO
+
+L<Project::Libs>
 
 =head1 LICENSE
 
