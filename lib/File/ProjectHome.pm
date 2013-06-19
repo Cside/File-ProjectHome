@@ -7,7 +7,7 @@ use Path::Class qw(dir);
 
 our $VERSION = "0.01";
 
-my @PROJECT_ROOT_FILES = qw(
+our @PROJECT_ROOT_FILES = qw(
     cpanfile
     .git
     .gitmodules
